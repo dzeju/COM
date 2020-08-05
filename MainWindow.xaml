@@ -1,0 +1,54 @@
+﻿<Window x:Class="COM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:COM"
+        mc:Ignorable="d"
+        Title="COMx" Height="250" Width="550">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Text="Ustawienia portu" Margin="5" Grid.ColumnSpan="2"/>
+        
+        <StackPanel Grid.Row="0" Grid.Column="0" Margin="5, 25">
+            
+            <TextBlock Text="Ports"/>
+            <ComboBox x:Name="PortsBox" ItemsSource="{Binding ports}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" Margin="5, 25">
+            <TextBlock Text="Baud rate"/>
+            <ComboBox x:Name="BaudRateBox" ItemsSource="{Binding baudRate}" SelectedItem="1" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="2" Margin="5, 25">
+            <TextBlock Text="Parity"/>
+            <ComboBox x:Name="ParityBox" ItemsSource="{Binding parity}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="3" Margin="5, 25">
+            <TextBlock Text="Data Bits"/>
+            <ComboBox x:Name="DataBitsBox" ItemsSource="{Binding dataBits}" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="4" Margin="5, 25">
+            <TextBlock Text="Stop bits"/>
+            <ComboBox x:Name="StopBitsBox" ItemsSource="{Binding stopBits}" />
+        </StackPanel>
+
+        <Button x:Name="OpenBtn" Click="OpenBtn_Click"  Content="Otwórz Port" Grid.Column="5" Margin="5, 25"/>
+
+    </Grid>
+</Window>
