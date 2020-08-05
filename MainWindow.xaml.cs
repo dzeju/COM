@@ -1,19 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.IO.Ports;
 using System.Threading;
+using System.ComponentModel;
+using System.Collections.Generic;
+using System.Windows.Controls;
 
 namespace COM
 {
@@ -25,22 +17,22 @@ namespace COM
         static bool _continue = false;
         SerialPort serialPort = new SerialPort();
         Thread readThread;
+        int counter = 0;
 
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new ComboBoxItems();
+            DataContext = new DataCont();
             {
-                PortsBox.SelectedIndex = 3;
+                PortsBox.SelectedIndex = 1;
                 BaudRateBox.SelectedIndex = 3;
                 ParityBox.SelectedIndex = 0;
                 DataBitsBox.SelectedIndex = 1;
                 StopBitsBox.SelectedIndex = 1;
             }
-            readThread = new Thread(ReadData);
-
         }
 
+        
         private void OpenBtn_Click(object sender, RoutedEventArgs e)
         {
             if (serialPort.IsOpen)
@@ -105,8 +97,6 @@ namespace COM
                         int bytes = serialPort.BytesToRead;
                         byte[] buffer = new byte[bytes];
                         serialPort.Read(buffer, 0, bytes);
-                        /*string buff = serialPort.ReadLine();
-                        byte[] buffer = Encoding.ASCII.GetBytes(buff);*/
                         Handler(buffer);
                     }
                 catch (TimeoutException) { }
@@ -118,14 +108,49 @@ namespace COM
         {
             byte[] up = { 0x04, 0x01 };
             byte[] down = { 0x04, 0x10 };
-            if (buffer == up)
-                MessageBox.Show("UP");
-            else if (buffer == down)
-                MessageBox.Show("DOWN");
+
+            if (buffer.SequenceEqual(up))
+            {
+                this.Dispatcher.Invoke((Action)(() =>
+                {
+                    counter++;
+                    count.Text = counter.ToString();
+                }));
+            }
+            else if (buffer.SequenceEqual(down))
+            {
+                this.Dispatcher.Invoke((Action)(() =>
+                {
+                    counter--;
+                    count.Text = counter.ToString();
+                }));
+            }
             else
-                MessageBox.Show("Nie rozpoznaję \n" + 
-                                BitConverter.ToString(buffer) + "\n" +
-                                BitConverter.ToString(up));
+                MessageBox.Show("Nie rozpoznaję");
+
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            if (serialPort.IsOpen)
+            {
+                _continue = false;
+                readThread.Join();
+                serialPort.Close();
+            }
+        }
+
+        private void ResetBtn_Click(object sender, RoutedEventArgs e)
+        {
+            counter = 0;
+            count.Text = counter.ToString();
+        }
+
+        private void RefreshBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new DataCont();
+            PortsBox.GetBindingExpression(ComboBox.ItemsSourceProperty)
+                      .UpdateTarget();
         }
     }
 }

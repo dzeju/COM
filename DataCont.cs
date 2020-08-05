@@ -5,15 +5,16 @@ using System.IO.Ports;
 
 namespace COM
 {
-    class ComboBoxItems
+    class DataCont
     {
         public List<string> ports {get; set;}
         public List<int> baudRate { get; set; }
         public List<Parity> parity { get; set; }
         public List<int> dataBits { get; set; }
         public List<StopBits> stopBits { get; set; }
+        //public int counter { get; set; }
 
-        public ComboBoxItems()
+        public DataCont()
         {
             ports = new List<string>();
             ports.Clear();
@@ -55,6 +56,8 @@ namespace COM
                 StopBits.OnePointFive,
                 StopBits.Two
             };
+
+            //counter = 0;
         }
     }
 }

@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:COM"
         mc:Ignorable="d"
-        Title="COMx" Height="250" Width="550">
+        Closing="Window_Closing"
+        Title="COMx" Height="200" Width="550">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="90"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -30,7 +32,7 @@
 
         <StackPanel Grid.Row="0" Grid.Column="1" Margin="5, 25">
             <TextBlock Text="Baud rate"/>
-            <ComboBox x:Name="BaudRateBox" ItemsSource="{Binding baudRate}" SelectedItem="1" />
+            <ComboBox x:Name="BaudRateBox" ItemsSource="{Binding baudRate}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="0" Grid.Column="2" Margin="5, 25">
@@ -48,7 +50,12 @@
             <ComboBox x:Name="StopBitsBox" ItemsSource="{Binding stopBits}" />
         </StackPanel>
 
-        <Button x:Name="OpenBtn" Click="OpenBtn_Click"  Content="Otwórz Port" Grid.Column="5" Margin="5, 25"/>
+        <Button x:Name="OpenBtn" Click="OpenBtn_Click"  Content="Otwórz Port" Grid.Column="5" Margin="5, 10, 5, 55"/>
+        <Button x:Name="RefreshBtn" Click="RefreshBtn_Click"  Content="Odśwież" Grid.Column="5" Margin="5, 55, 5, 10"/>
+
+        <TextBlock Text="Licznik: " Grid.Column="0" Grid.Row="1" Margin="5, 0"/>
+        <TextBlock x:Name="count" Text="0" Grid.Column="0" Grid.Row="1" Margin="45,0,10,0"/>
+        <Button x:Name="ResetBtn" Content="Zeruj licznik" Click="ResetBtn_Click" Grid.Column="0" Grid.Row="1" Margin="5, 20, 10, 50"/>
 
     </Grid>
 </Window>

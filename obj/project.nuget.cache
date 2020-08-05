@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "dgSpecHash": "LTr2ZJg8/yMcd6Nj4tEc52qILKLXaIfsVli2zG9IzIPADfAgBlO5SO9BwnZBz8kOPDhDqOCMEVC8k39lmSOeZg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Kuba\\source\\repos\\COM\\COM.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Kuba\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
+    "C:\\Users\\Kuba\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\Kuba\\.nuget\\packages\\runtime.linux-arm.runtime.native.system.io.ports\\4.7.0\\runtime.linux-arm.runtime.native.system.io.ports.4.7.0.nupkg.sha512",
+    "C:\\Users\\Kuba\\.nuget\\packages\\runtime.linux-arm64.runtime.native.system.io.ports\\4.7.0\\runtime.linux-arm64.runtime.native.system.io.ports.4.7.0.nupkg.sha512",
+    "C:\\Users\\Kuba\\.nuget\\packages\\runtime.linux-x64.runtime.native.system.io.ports\\4.7.0\\runtime.linux-x64.runtime.native.system.io.ports.4.7.0.nupkg.sha512",
+    "C:\\Users\\Kuba\\.nuget\\packages\\runtime.native.system.io.ports\\4.7.0\\runtime.native.system.io.ports.4.7.0.nupkg.sha512",
+    "C:\\Users\\Kuba\\.nuget\\packages\\runtime.osx-x64.runtime.native.system.io.ports\\4.7.0\\runtime.osx-x64.runtime.native.system.io.ports.4.7.0.nupkg.sha512",
+    "C:\\Users\\Kuba\\.nuget\\packages\\system.io.ports\\4.7.0\\system.io.ports.4.7.0.nupkg.sha512",
+    "C:\\Users\\Kuba\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
+    "C:\\Users\\Kuba\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
+    "C:\\Users\\Kuba\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}
