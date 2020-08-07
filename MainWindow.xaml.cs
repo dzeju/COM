@@ -115,6 +115,7 @@ namespace COM
                 {
                     counter++;
                     count.Text = counter.ToString();
+                    StatusLbl.Content = "odebrano pakiet";
                 }));
             }
             else if (buffer.SequenceEqual(down))
@@ -123,11 +124,16 @@ namespace COM
                 {
                     counter--;
                     count.Text = counter.ToString();
+                    StatusLbl.Content = "odebrano pakiet";
                 }));
             }
             else
-                MessageBox.Show("Nie rozpoznaję");
-
+            {
+                this.Dispatcher.Invoke((Action)(() =>
+                {
+                    StatusLbl.Content = "nie rozpoznano pakietu";
+                }));
+            }
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)
