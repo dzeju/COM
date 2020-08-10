@@ -100,7 +100,7 @@ namespace COM
                         Handler(buffer);
                     }
                 catch (TimeoutException) { }
-                Thread.Sleep(1);
+                //Thread.Sleep(1);
             }
         }
 
@@ -109,13 +109,43 @@ namespace COM
             byte[] up = { 0x04, 0x01 };
             byte[] down = { 0x04, 0x10 };
 
-            if (buffer.SequenceEqual(up))
+            if (buffer.Length >= 2)
+                if (buffer[buffer.Length-2] == 0x04)
+                {
+                    if (buffer[buffer.Length-1] == 0x01)
+                    {
+                        this.Dispatcher.Invoke((Action)(() =>
+                        {
+                            counter++;
+                            count.Text = counter.ToString() + ", cm: " + ((float)((float)counter / Convert.ToInt32(PrzelicznikTxt.Text))).ToString();
+                            StatusLbl.Content = "odebrano pakiet: " + BitConverter.ToString(buffer);
+                        }));
+                    }
+                    else if (buffer[buffer.Length - 1] == 0x10)
+                    {
+                        this.Dispatcher.Invoke((Action)(() =>
+                        {
+                            counter--;
+                            count.Text = counter.ToString() + ", cm: " + ((float)((float)counter / Convert.ToInt32(PrzelicznikTxt.Text))).ToString();
+                            StatusLbl.Content = "odebrano pakiet: " + BitConverter.ToString(buffer);
+                        }));
+                    }
+                    else
+                    {
+                        this.Dispatcher.Invoke((Action)(() =>
+                        {
+                            StatusLbl.Content = "nie rozpoznano pakietu: " + BitConverter.ToString(buffer);
+                        }));
+                    }
+                }
+
+            /*if (buffer.SequenceEqual(up))
             {
                 this.Dispatcher.Invoke((Action)(() =>
                 {
                     counter++;
                     count.Text = counter.ToString();
-                    StatusLbl.Content = "odebrano pakiet";
+                    StatusLbl.Content = "odebrano pakiet" + BitConverter.ToString(buffer);
                 }));
             }
             else if (buffer.SequenceEqual(down))
@@ -124,16 +154,16 @@ namespace COM
                 {
                     counter--;
                     count.Text = counter.ToString();
-                    StatusLbl.Content = "odebrano pakiet";
+                    StatusLbl.Content = "odebrano pakiet" + BitConverter.ToString(buffer);
                 }));
             }
             else
             {
                 this.Dispatcher.Invoke((Action)(() =>
                 {
-                    StatusLbl.Content = "nie rozpoznano pakietu";
+                    StatusLbl.Content = "nie rozpoznano pakietu, " + buffer.Length.ToString() + BitConverter.ToString(buffer);
                 }));
-            }
+            }*/
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)

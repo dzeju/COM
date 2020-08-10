@@ -54,11 +54,16 @@
         <Button x:Name="RefreshBtn" Click="RefreshBtn_Click"  Content="Odśwież" Grid.Column="5" Margin="5, 55, 5, 10"/>
 
         <TextBlock Text="Licznik: " Grid.Column="0" Grid.Row="1" Margin="5, 0"/>
-        <TextBlock x:Name="count" Text="0" Grid.Column="0" Grid.Row="1" Margin="45,0,10,0"/>
+        <TextBlock x:Name="count" Text="0" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="45,0,10,0"/>
         <Button x:Name="ResetBtn" Content="Zeruj licznik" Click="ResetBtn_Click" Grid.Column="0" Grid.Row="1" Margin="5, 20, 10, 40"/>
 
         <Label Content="Status: " Grid.Column="0" Grid.Row="1" VerticalAlignment="Bottom"/>
-        <Label x:Name="StatusLbl" Content=" " Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="37,54,5,0" />
+        <Label x:Name="StatusLbl" Content=" " Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="6" Margin="37,54,5,0" />
+
+        <Label Content="Przelicznik" Grid.Row="1" Margin="5, 38, 10, 18"/>
+        <TextBox x:Name="PrzelicznikTxt" Grid.Row="1" Grid.ColumnSpan="2" Text="1" TextWrapping="Wrap" Margin="70, 42, 40, 18"/>
+
+
 
     </Grid>
 </Window>
